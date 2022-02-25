@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import exceptions.DomainException;
+
 public class Reservation {
 	private static SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	private Integer roomNumber;
