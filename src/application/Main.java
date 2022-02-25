@@ -14,8 +14,7 @@ public class Main {
 		 
 	Scanner sc = new Scanner(System.in);
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-	Reservation reserva;
-	
+		
 	try {
 		System.out.print("Número do quarto: ");
 		int numero = sc.nextInt();
@@ -26,20 +25,26 @@ public class Main {
 		System.out.print("Check-out -> (DD/MM/AAAA): ");
 		Date checkOut = formato.parse(sc.next());
 		
-		reserva = new Reservation(numero, checkIn, checkOut);
+		Reservation reserva = new Reservation(numero, checkIn, checkOut);
 		System.out.println("Reserva: " + reserva);
 		
 		
-		System.out.println("\nAtualize as datas da reserva:");
-		System.out.print("Check-in -> (DD/MM/AAAA): ");
-		checkIn = formato.parse(sc.next());
+		System.out.print("\nDeseja alterar os dias da sua reseva (s/n) ? ");
+		char resp = sc.next().charAt(0);
 		
-		System.out.print("Check-out -> (DD/MM/AAAA): ");
-		checkOut = formato.parse(sc.next());
+		if(resp == 's') {
+			System.out.print("Check-in -> (DD/MM/AAAA): ");
+			checkIn = formato.parse(sc.next());
+			
+			System.out.print("Check-out -> (DD/MM/AAAA): ");
+			checkOut = formato.parse(sc.next());
+			
+			reserva.updateDates(checkIn, checkOut);
+			System.out.println("Reserva: " + reserva);
 		
-		reserva.updateDates(checkIn, checkOut);
-		System.out.println("Reserva: " + reserva);
+		}
 		
+		System.out.println("Tenha uma boa estadia! :) ");
 	}
 	catch (ParseException error){
 		System.out.println("Data -> Formato inválido");

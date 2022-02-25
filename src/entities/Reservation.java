@@ -13,7 +13,7 @@ public class Reservation {
 	private Date checkOut;
 	
 	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
-		if (!this.checkOut.after(checkIn)) {
+		if (!checkOut.after(checkIn)) {
 			throw new DomainException("Check-out date must be after check-in date");
 		}
 		this.roomNumber = roomNumber;
@@ -54,10 +54,10 @@ public class Reservation {
 	public void updateDates(Date checkin, Date checkout) {
 		Date dataAtual = new Date();
 		//verificando se as datas de checkin e checkout são antes do dia atual -> dataAtual
-		if(this.checkIn.before(dataAtual) || this.checkOut.before(dataAtual)) {
+		if(checkin.before(dataAtual) || checkout.before(dataAtual)) {
 			throw new DomainException("As datas para reserva devem ser futuras.");
 		}
-		else if(!this.checkOut.after(checkIn)) {
+		else if(!checkout.after(checkIn)) {
 			//verifica se é falso que a data de checOut é depois da de checkIn
 			throw new DomainException("A data para o check-out deve ser posterior à data de check-in.");
 		}
